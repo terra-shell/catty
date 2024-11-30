@@ -191,7 +191,7 @@ impl<T> Future for Receiver<T> {
 /// assert_eq!(tx.send("Hello!"), Err("Hello!"));
 /// ```
 #[inline]
-pub fn oneshot<T: Send>() -> (Sender<T>, Receiver<T>) {
+pub fn oneshot<T>() -> (Sender<T>, Receiver<T>) {
     let inner_arc = InnerArc(Arc::new(Mutex::new(State::default())));
     (Sender(inner_arc.clone()), Receiver(inner_arc))
 }
